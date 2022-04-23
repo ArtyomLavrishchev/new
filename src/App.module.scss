@@ -1,3 +1,24 @@
 .App {
-  color: aqua;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas:
+    "h h"
+    "n c";
+
+    .header {
+      background-color: gray;
+      grid-area: h;
+    }
+
+    .navbar {
+      background-color: aquamarine;
+      grid-area: n;
+    }
+
+    .content {
+      background-color: cadetblue;
+      grid-area: c;
+    }
 }
