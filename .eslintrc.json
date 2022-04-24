@@ -37,6 +37,8 @@
       "max-len": ["error", { "code": 100 }],
       "require-jsdoc": "off",
       "@typescript-eslint/ban-ts-comment": "off",
-      "@typescript-eslint/ban-types": "off"
+      "@typescript-eslint/ban-types": "off",
+      "no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": ["warn"]
     }
 }
