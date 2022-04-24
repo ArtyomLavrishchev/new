@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ProfileInfo from '@components/Content/Profile/ProfileInfo/ProfileInfo';
-import Posts from '@components/Content/Profile/Posts/Posts';
+import ProfileInfo from '@components/Content/Profile/ProfileInfo';
+import Posts from '@components/Content/Profile/Posts';
 
 import styles from './Profile.module.scss';
 
