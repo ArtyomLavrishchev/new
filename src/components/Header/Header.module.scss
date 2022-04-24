@@ -1,3 +1,9 @@
-.logo {
-  height: 50px;
+.container {
+  background-color: gray;
+  grid-area: h;
+
+  .logo {
+    height: 50px;
+  }
 }
+

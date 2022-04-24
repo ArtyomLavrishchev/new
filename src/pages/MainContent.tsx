@@ -1,13 +1,13 @@
 import React from 'react';
-import Profile from './Profile/Profile';
+import Profile from './Profile';
 
-// import styles from './MainContent.module.scss';
+import styles from './MainContent.module.scss';
 
 const MainContent = () => {
   return (
-    <>
+    <div className={styles.container}>
       <Profile />
-    </>
+    </div>
   );
 };
 
