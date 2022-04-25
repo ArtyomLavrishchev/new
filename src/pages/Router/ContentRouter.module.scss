@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas:
+    "h h"
+    "n c";
+}
+
+.contentBlock {
+  background-color: cadetblue;
+  padding: 18px;
+}

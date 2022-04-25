@@ -1,4 +1,6 @@
 .container {
   background-color: aquamarine;
   grid-area: n;
+  display: flex;
+  flex-direction: column;
 }
