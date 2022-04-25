@@ -1,20 +1,23 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Dialogs from '@pages/Dialogs';
-import Profile from '@pages/Profile';
-
-import styles from './ContentRouter.module.scss';
+import Messages from '@components/Content/Dialogs/Messages/Messages';
 import Layout from '@pages/Router/Layout';
+import Profile from '@pages/Profile';
+import Dialogs from '@pages/Dialogs';
 
-const ContentRouter = () => {
+import styles from './AppRouter.module.scss';
+
+const AppRouter = () => {
   return (
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Profile />}/>
           <Route path="/profile" element={<Profile />}/>
-          <Route path="/dialogs" element={<Dialogs />}/>
+          <Route path="/dialogs" element={<Dialogs />}>
+            <Route path=':dialogId' element={<Messages />}/>
+          </Route>
           <Route path="*" element={<div>Not found</div>}/>
         </Route>
       </Routes>
@@ -22,4 +25,4 @@ const ContentRouter = () => {
   );
 };
 
-export default ContentRouter;
+export default AppRouter;

@@ -1,13 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import styles from './Navbar.module.scss';
 
 const Navbar = () => {
   return (
     <div className={styles.container}>
-      <Link to='/profile'>Profile</Link>
-      <Link to='/dialogs'>Dialogs</Link>
+      <NavLink
+        className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}
+        to='/profile'
+      >
+        Profile
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}
+        to='/dialogs'
+      >
+        Dialogs
+      </NavLink>
     </div>
   );
 };

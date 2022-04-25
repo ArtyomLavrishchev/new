@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ContentRouter from '@pages/Router/ContentRouter';
+import AppRouter from '@pages/Router/AppRouter';
 
 import styles from './App.module.scss';
 
 function App() {
   return (
     <div className={styles.App}>
-      <ContentRouter />
+      <AppRouter />
     </div>
   );
 }
