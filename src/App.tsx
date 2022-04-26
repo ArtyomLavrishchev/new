@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import Header from '@components/Header';
-import Navbar from '@components/Navbar';
-import MainContent from '@pages/MainContent';
+import AppRouter from '@pages/Router/AppRouter';
+import { StateTypeTest } from './redux/state';
 
 import styles from './App.module.scss';
 
-function App() {
+type Props = {
+  state: StateTypeTest;
+}
+
+const App: FC<Props> = ({ state }) => {
   return (
     <div className={styles.App}>
-      <Header />
-      <Navbar />
-      <MainContent />
+      <AppRouter state={state} />
     </div>
   );
-}
+};
 
 export default App;
