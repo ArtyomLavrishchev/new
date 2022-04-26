@@ -1,14 +1,18 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+
+import App from './App';
+import { state } from './redux/state';
+
+import './index.css';
+
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <App state={state} />
       </BrowserRouter>
     </React.StrictMode>,
 );

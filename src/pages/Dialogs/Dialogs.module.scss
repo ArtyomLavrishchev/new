@@ -1,13 +1,22 @@
 .container {
   display: flex;
-  column-gap: 18px;
+  flex-direction: column;
+  row-gap: 18px;
 
-  .interlocutors {
+  .dialogs {
     display: flex;
-    flex-direction: column;
-    row-gap: 18px;
-    background-color: darkcyan;
-    padding: 18px;
+    column-gap: 18px;
+
+    .interlocutors {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 18px;
+      background-color: darkcyan;
+      padding: 18px;
+      width: 20%;
+      min-width: 150px;
+    }
   }
 
 }

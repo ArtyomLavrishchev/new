@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import NewPostForm from './NewPostForm';
-import Post from './Post';
+
+import Post from './Post/Post';
 
 import styles from './Posts.module.scss';
 
-import { posts } from '@assets/mock-data';
+import { PostType } from 'src/types';
 
-const Posts = () => {
+type Props = {
+  posts: PostType[];
+}
+
+const Posts: FC<Props> = ({ posts }) => {
   return (
     <div className={ styles.container }>
       <h2>My posts</h2>

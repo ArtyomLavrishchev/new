@@ -3,9 +3,9 @@ import React from 'react';
 import TextArea from '@components/UI/TextArea';
 import Button from '@components/UI/Button';
 
-import styles from './NewPostForm.module.scss';
+import styles from './DialogsForm.module.scss';
 
-const NewPostForm = () => {
+const DialogsForm = () => {
   const buttonClickHandler = () => {
     console.log('click');
   };
@@ -13,9 +13,9 @@ const NewPostForm = () => {
   return (
     <div className={ styles.container }>
       <TextArea />
-      <Button onClick={buttonClickHandler}>Add post</Button>
+      <Button onClick={buttonClickHandler}>Add message</Button>
     </div>
   );
 };
 
-export default NewPostForm;
+export default DialogsForm;
