@@ -2,16 +2,17 @@ import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Message from './Message/Message';
-import { DialogType } from 'src/types';
+import { useAppSelector } from '../../../../hooks/reduxHooks';
 
 import styles from './Messages.module.scss';
 
 type Props = {
-  dialogs: DialogType[];
+
 }
 
-const Messages: FC<Props> = ({ dialogs }) => {
+const Messages: FC<Props> = ({}) => {
   const { dialogId } = useParams();
+  const { dialogs } = useAppSelector((state) => state.dialogs.data);
   const messages = dialogs.find(({ id }) => id === dialogId)?.messages;
   return (
     <div className={ styles.container }>
