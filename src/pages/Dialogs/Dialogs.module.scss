@@ -6,6 +6,7 @@
   .dialogs {
     display: flex;
     column-gap: 18px;
+    flex-direction: row;
 
     .interlocutors {
       display: flex;

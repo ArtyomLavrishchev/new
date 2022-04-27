@@ -1,18 +1,19 @@
 import React, { FC } from 'react';
 
-import NewPostForm from './NewPostForm';
-
 import Post from './Post/Post';
+import NewPostForm from './NewPostForm';
+import { useAppSelector } from '@hooks/reduxHooks';
+
 
 import styles from './Posts.module.scss';
 
-import { PostType } from 'src/types';
-
 type Props = {
-  posts: PostType[];
+
 }
 
-const Posts: FC<Props> = ({ posts }) => {
+const Posts: FC<Props> = ({}) => {
+  const { posts } = useAppSelector((state) => state.profile.data);
+
   return (
     <div className={ styles.container }>
       <h2>My posts</h2>

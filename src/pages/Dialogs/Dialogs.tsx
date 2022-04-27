@@ -3,15 +3,17 @@ import { Outlet } from 'react-router-dom';
 
 import Interlocutor from '@components/Content/Dialogs/Interlocutors';
 import DialogsForm from '@components/Content/Dialogs/DialogsForm';
-import { DialogType } from 'src/types';
 
 import styles from './Dialogs.module.scss';
+import { useAppSelector } from '@hooks/reduxHooks';
 
 type Props = {
-  dialogs: DialogType[];
+
 }
 
-const Dialogs: FC<Props> = ({ dialogs }) => {
+const Dialogs: FC<Props> = ({}) => {
+  const { dialogs } = useAppSelector((state) => state.dialogs.data);
+
   return (
     <div className={ styles.container }>
       <div className={styles.dialogs}>

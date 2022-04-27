@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 
 import TextArea from '@components/UI/TextArea';
 import Button from '@components/UI/Button';
+import { useAppDispatch } from '@hooks/reduxHooks';
+import { addPost } from '@reducers/profileReducer';
 
 import styles from './NewPostForm.module.scss';
 
-const NewPostForm = () => {
-  const buttonClickHandler = () => {
-    console.log('click');
+type Props = {
+
+}
+
+const NewPostForm: FC<Props> = () => {
+  const dispatch = useAppDispatch();
+
+  const [postText, setPostText] = useState('');
+
+  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setPostText(e.target.value);
   };
 
+  const buttonClickHandler = () => {
+    dispatch(addPost(postText));
+    setPostText('');
+  };
   return (
     <div className={ styles.container }>
-      <TextArea />
+      <TextArea onChange={onPostChange} value={postText} />
       <Button onClick={buttonClickHandler}>Add post</Button>
     </div>
   );

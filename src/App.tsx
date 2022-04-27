@@ -1,18 +1,13 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import AppRouter from '@pages/Router/AppRouter';
-import { StateTypeTest } from './redux/state';
 
 import styles from './App.module.scss';
 
-type Props = {
-  state: StateTypeTest;
-}
-
-const App: FC<Props> = ({ state }) => {
+const App = () => {
   return (
     <div className={styles.App}>
-      <AppRouter state={state} />
+      <AppRouter />
     </div>
   );
 };

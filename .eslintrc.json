@@ -33,6 +33,10 @@
       }
     },
     "rules": {
+      "import/no-unresolved": [
+        2,
+        { "caseSensitive": false }
+      ],
       "object-curly-spacing": ["error", "always"],
       "max-len": ["error", { "code": 100 }],
       "require-jsdoc": "off",
