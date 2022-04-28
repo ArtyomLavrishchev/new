@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
 import TextArea from '@components/UI/TextArea';
 import Button from '@components/UI/Button';
@@ -16,9 +16,9 @@ const NewPostForm: FC<Props> = () => {
 
   const [postText, setPostText] = useState('');
 
-  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onPostChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
     setPostText(e.target.value);
-  };
+  }, []);
 
   const buttonClickHandler = () => {
     dispatch(addPost(postText));
