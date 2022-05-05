@@ -1,9 +1,12 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import L, { TileLayer as TL } from 'leaflet';
 import { Marker, Popup, TileLayer, MapContainer } from 'react-leaflet';
 
-import './MapComponent.css';
 import BaseMap from '@components/Content/MapComponent/BaseMap';
+
+import './MapComponent.css';
+import Checkbox from '@components/UI/Checkbox';
+import GeojsonLayer from '@components/Content/MapComponent/GeojsonLayer';
 
 type Props = {
 
@@ -36,6 +39,8 @@ const MapComponent: FC<Props> = ({}) => {
     baseMap: 'osm',
   });
 
+  const [geojsonVisible, setGeojsonVisible] = useState(false);
+
   const { zoom, baseMap, ...center } = state;
 
   useEffect(() => {
@@ -48,13 +53,26 @@ const MapComponent: FC<Props> = ({}) => {
     setState((prev) => ({ ...prev, baseMap: bm }));
   };
 
+  const onGeojsonToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    setGeojsonVisible(e.target.checked);
+  };
+
   return (
     <MapContainer center={center} zoom={zoom}>
       <TileLayer
         ref={ref}
         url={baseMapDict[baseMap]}
       />
+      <div className='toggleGeojson'>
+        <Checkbox
+          label='Toggle Geojson'
+          name='layerToggle'
+          checked={geojsonVisible}
+          onChange={onGeojsonToggle}
+        />
+      </div>
       <BaseMap baseMap={baseMap} onChange={onChangeBaseMap} />
+      {geojsonVisible && <GeojsonLayer url='places.json' cluster />}
       <Marker position={center}>
         <Popup>
           {baseMapDict[baseMap]}
