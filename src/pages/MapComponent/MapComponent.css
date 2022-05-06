@@ -1,0 +1,14 @@
+@import url("~leaflet/dist/leaflet.css");
+@import '~react-leaflet-markercluster/dist/styles.min.css';
+
+.leaflet-container {
+  width: 800px;
+  height: 500px;
+}
+
+.toggleGeojson {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  z-index: 999;
+}

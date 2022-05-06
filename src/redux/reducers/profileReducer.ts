@@ -17,7 +17,7 @@ const initialState: ProfileState = {
   },
 };
 
-export const counterSlice = createSlice({
+export const profileSlice = createSlice({
   name: 'dialogs',
   initialState,
   reducers: {
@@ -27,7 +27,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { addPost } = counterSlice.actions;
+export const { addPost } = profileSlice.actions;
 
 
-export default counterSlice.reducer;
+export default profileSlice.reducer;

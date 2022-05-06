@@ -1,4 +1,4 @@
-import React, { FC, TextareaHTMLAttributes } from 'react';
+import React, { FC, memo, TextareaHTMLAttributes } from 'react';
 
 import styles from './TextArea.module.scss';
 
@@ -8,4 +8,4 @@ const TextArea: FC<Props> = (props) => {
   return <textarea className={styles.textarea} {...props} />;
 };
 
-export default TextArea;
+export default memo(TextArea);
