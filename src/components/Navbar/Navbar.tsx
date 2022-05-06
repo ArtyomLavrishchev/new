@@ -21,6 +21,12 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}
+        to='/users'
+      >
+        Users
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => cn(styles.link, { [styles.active]: isActive })}
         to='/map'
       >
         Map

@@ -27,7 +27,7 @@ const initialState: DialogsState = {
   },
 };
 
-export const counterSlice = createSlice({
+export const dialogsSlice = createSlice({
   name: 'dialogs',
   initialState,
   reducers: {
@@ -39,7 +39,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { addMessage } = counterSlice.actions;
+export const { addMessage } = dialogsSlice.actions;
 
 
-export default counterSlice.reducer;
+export default dialogsSlice.reducer;
