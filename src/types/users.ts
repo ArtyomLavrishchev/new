@@ -4,10 +4,12 @@ export type LocationType = {
 }
 
 export type UsersType = {
-  id: string;
-  photoUrl: string;
+  id: number;
+  name: string;
+  photos: {
+    small: string | null;
+    large: string | null;
+  };
   followed: boolean;
-  fullName: string;
-  status: string;
-  location: LocationType;
+  status: string | null;
 }

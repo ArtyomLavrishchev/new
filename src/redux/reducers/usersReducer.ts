@@ -1,52 +1,43 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UsersType } from 'src/types/users';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { usersAPI } from '../../api/usersApi';
+import { UsersType } from '../../types/users';
 
 interface ProfileState {
   data: {
     users: UsersType[];
+    totalCount: number;
+    isLoading: boolean;
+    error: string;
   };
 }
 
+export const fetchUsers = createAsyncThunk(
+    'users/fetchUsers',
+    async (options: {page: number, count: number}, { rejectWithValue }) => {
+      try {
+        const response = await usersAPI.getUsers(options);
+        if (response.error) {
+          throw new Error(response.error);
+        }
+        return response;
+      } catch (err) {
+        let message = 'Server error';
+
+        if (err instanceof Error) {
+          message = err.message;
+        }
+        return rejectWithValue(message);
+      }
+    },
+);
+
+
 const initialState: ProfileState = {
   data: {
-    users: [
-      {
-        id: '1',
-        followed: true,
-        fullName: 'Artem',
-        location: {
-          city: 'Rostov',
-          country: 'Russia',
-        },
-        // eslint-disable-next-line max-len
-        photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvoBKjCWkoNA8jziEddSrMitmzahIh3MN2Vg&usqp=CAU',
-        status: 'status',
-      },
-      {
-        id: '2',
-        followed: false,
-        fullName: 'Alena',
-        location: {
-          city: 'Ufa',
-          country: 'Russia',
-        },
-        // eslint-disable-next-line max-len
-        photoUrl: 'https://klike.net/uploads/posts/2019-06/1560329641_2.jpg',
-        status: 'status',
-      },
-      {
-        id: '3',
-        followed: false,
-        fullName: 'Valeria',
-        location: {
-          city: 'Rostov',
-          country: 'Russia',
-        },
-        // eslint-disable-next-line max-len
-        photoUrl: 'https://cdnimg.rg.ru/img/content/157/19/21/RIAN_3266001.HR.ru_d_850.jpg',
-        status: 'status',
-      },
-    ],
+    users: [],
+    totalCount: 0,
+    isLoading: false,
+    error: '',
   },
 };
 
@@ -54,19 +45,32 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    toggleFollow: (state, action: PayloadAction<string>) => {
+    toggleFollow: (state, action: PayloadAction<number>) => {
       const user = state.data.users.find((u) => u.id === action.payload);
       if (user) {
         user.followed = !user?.followed;
       }
     },
-    setUsers: (state, action: PayloadAction<UsersType[]>) => {
-      state.data.users = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+        .addCase(fetchUsers.pending, (state) => {
+          state.data.isLoading = true;
+          state.data.error = '';
+        })
+        .addCase(fetchUsers.fulfilled, (state, action) => {
+          state.data.users = action.payload.items;
+          state.data.totalCount = action.payload.totalCount;
+          state.data.isLoading = false;
+          state.data.error = '';
+        })
+        .addCase(fetchUsers.rejected, (state, action) => {
+          state.data.error = action.error.message || '';
+          state.data.isLoading = false;
+        });
   },
 });
 
-export const { toggleFollow, setUsers } = usersSlice.actions;
-
+export const { toggleFollow } = usersSlice.actions;
 
 export default usersSlice.reducer;
