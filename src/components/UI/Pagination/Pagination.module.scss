@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  column-gap: 12px;
+
+  .page {
+    color: darkblue;
+    cursor: pointer;
+
+    &.active {
+      color: azure;
+    }
+  }
+}

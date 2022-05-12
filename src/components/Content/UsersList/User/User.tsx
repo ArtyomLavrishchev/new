@@ -5,10 +5,12 @@ import Avatar from '@components/UI/Avatar';
 import Button from '@components/UI/Button';
 import { useAppDispatch } from '@hooks/reduxHooks';
 import { toggleFollow } from '@reducers/usersReducer';
+import defaultUserPhoto from '@assets/images/user/defaultUserPhoto.png';
 
 import styles from './User.module.scss';
 
-const User: FC<UsersType> = ({ id, followed, fullName, location, photoUrl, status }) => {
+
+const User: FC<UsersType> = ({ id, followed, name, photos, status }) => {
   const dispatch = useAppDispatch();
 
   const onChangeFollowed = () => {
@@ -20,17 +22,13 @@ const User: FC<UsersType> = ({ id, followed, fullName, location, photoUrl, statu
   return (
     <div className={ styles.container }>
       <div className={styles.avatar}>
-        <Avatar img={photoUrl} size='medium' />
+        <Avatar img={photos?.small || defaultUserPhoto} size='medium' />
         <Button onClick={onChangeFollowed}>{btnLabel}</Button>
       </div>
       <div className={styles.info}>
         <div>
-          <span>{fullName}</span>
+          <span>{name}</span>
           <span>{status}</span>
-        </div>
-        <div>
-          <span>{location.country},</span>
-          <span>{location.city}</span>
         </div>
       </div>
     </div>
