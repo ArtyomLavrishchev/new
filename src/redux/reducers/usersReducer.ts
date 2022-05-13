@@ -36,7 +36,7 @@ const initialState: ProfileState = {
   data: {
     users: [],
     totalCount: 0,
-    isLoading: false,
+    isLoading: true,
     error: '',
   },
 };
