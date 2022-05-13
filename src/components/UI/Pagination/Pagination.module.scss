@@ -1,6 +1,8 @@
 .container {
   display: flex;
   column-gap: 12px;
+  max-width: 80vw;
+  overflow-x: scroll;
 
   .page {
     color: darkblue;

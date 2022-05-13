@@ -6,10 +6,11 @@ import User from './User/User';
 import Pagination from '@components/UI/Pagination';
 
 import styles from './UsersList.module.scss';
+import Loader from '@components/UI/Loader';
 
 const UsersList = () => {
   const dispatch = useAppDispatch();
-  const { users, totalCount } = useAppSelector((state) => state.users.data);
+  const { users, totalCount, isLoading } = useAppSelector((state) => state.users.data);
   const [pageSize, setPageSize] = useState(10);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +25,11 @@ const UsersList = () => {
   return (
     <div className={ styles.container }>
       <Pagination itemsCount={totalCount} pageSize={pageSize} onChange={setCurrentPage} />
-      {users.map((user) => <User key={user.id} {...user} />)}
+      {
+        isLoading ?
+          <Loader /> :
+          users.map((user) => <User key={user.id} {...user} />)
+      }
     </div>
   );
 };
